@@ -1,3 +1,4 @@
+import { LogartempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
@@ -19,6 +20,9 @@ export class NegociacaoController {
         this.negociacoesView.update(this.negociacoes);
     }
 
+
+    //Analisando a performance e o tempo de renderização de uma aplicação com typescript
+    @LogartempoDeExecucao()
     public adiciona(): void {
         const negociacao = Negociacao.criaDe(
             this.inputData.value,
@@ -34,8 +38,9 @@ export class NegociacaoController {
 
         this.negociacoes.adiciona(negociacao);
         this.limparFormulario();
-        this.atualizaView();
+        this.atualizaView();       
     }
+
 
     private ehDiaUtil(data: Date) {
         return data.getDay() > DiasDaSemana.DOMINGO

@@ -1,0 +1,39 @@
+//Analisando a performance e o tempo de renderização de uma aplicação
+
+Usando Java-Script:
+    public update(model: T): void {
+
+        //Analisando a performance e o tempo de renderização de uma aplicação
+        const tempo1 = performance.now();
+        --->
+        --->
+        //Analisando a performance e o tempo de renderização de uma aplicação resultado divide por 1000
+        const tempo2 = performance.now();
+        console.log(`Tempo de execução do método update: ${(tempo2 - tempo1)/1000} segundos`)
+    }
+
+    public adiciona(): void {
+
+        //Analisando a performance e o tempo de renderização de uma aplicação
+        const tempoAdciona1 = performance.now();
+        --->
+        --->
+        //Analisando a performance e o tempo de renderização de uma aplicação resultado divide por 1000
+        const tempoAdciona2 = performance.now();
+        console.log(`Tempo de execução do método adiciona: ${(tempoAdciona2 - tempoAdciona1)/1000} segundos`)
+    }
+
+
+Usando Type-Script:
+
+decorators:
+logar-tempo-de-execusao.ts:
+Ativa no tsconfig.json a função:
+ "experimentalDecorators": true
+
+chamar no metodo:
+@LogartempoDeExecucao()
+    public adiciona(): void {}
+
+
+
