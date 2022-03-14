@@ -17,7 +17,7 @@ export class NegociacaoController {
         const negociacao = Negociacao.criaDe(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
         if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
-                .update('Apenas negociações em dias úteis são aceitas');
+                .update("Atenção! Esta operação só podem ser realizadas, apenas em dias úteis");
             return;
         }
         this.negociacoes.adiciona(negociacao);
@@ -36,6 +36,6 @@ export class NegociacaoController {
     }
     atualizaView() {
         this.negociacoesView.update(this.negociacoes);
-        this.mensagemView.update('Negociação adicionada com sucesso');
+        this.mensagemView.update('Dados adicionado com sucesso');
     }
 }
