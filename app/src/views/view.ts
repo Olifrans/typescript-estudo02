@@ -18,7 +18,7 @@ export abstract class View<T> {
     }
 
     //Analisando a performance e o tempo de renderização de uma aplicação com typescript
-    @LogartempoDeExecucao()
+    @LogartempoDeExecucao(true)
     public update(model: T): void {
         let template = this.template(model);
         if (this.escapar) {
@@ -27,6 +27,5 @@ export abstract class View<T> {
         }
         this.elemento.innerHTML = template;       
     }
-
     protected abstract template(model: T): string;
 }
