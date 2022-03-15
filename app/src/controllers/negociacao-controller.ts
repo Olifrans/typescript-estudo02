@@ -14,23 +14,18 @@ export class NegociacaoController {
     @domInjector('#quantidade')
     private inputQuantidade: HTMLInputElement;
     @domInjector('#valor')
-    private inputValor: HTMLInputElement;
-
+    private inputValor: HTMLInputElement;    
 
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
     private mensagemView = new MensagemView('#mensagemView');
 
-
-
-
-
+    //Atribuções feita pelo decorator domInjector para evitar o crecimento do constructor
     constructor() {
-        // this.inputData = <HTMLInputElement>document.querySelector('#data');
-        // this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
-        // this.inputValor = document.querySelector('#valor') as HTMLInputElement;
         this.negociacoesView.update(this.negociacoes);
     }
+
+
 
     //Analisando a performance e o tempo de renderização de uma aplicação com typescript
     //@inspect()
