@@ -6,6 +6,7 @@ import { Negociacao } from '../models/negociacao.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
+import { Negociacoes } from '../models/negociacoes';
 
 export class NegociacaoController {
 
@@ -14,7 +15,7 @@ export class NegociacaoController {
     @domInjector('#quantidade')
     private inputQuantidade: HTMLInputElement;
     @domInjector('#valor')
-    private inputValor: HTMLInputElement;    
+    private inputValor: HTMLInputElement;
 
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
@@ -48,6 +49,29 @@ export class NegociacaoController {
         this.limparFormulario();
         this.atualizaView();
     }
+
+
+    importarDados(): void {
+        fetch('http://localhost:8080/dados')
+            .then(res => res.json())
+            .then((dados: any[]) => {
+                return dados.map(dadoDeHoje => {
+                    return new Negociacao(
+                        new Date(),
+                        dadoDeHoje.vezes,
+                        dadoDeHoje.montante
+                    )
+                })
+            })
+            .then(negociacoesDeHoje => {
+                for(let negociacao of negociacoesDeHoje) {
+                    this.negociacoes.adiciona(negociacao);
+                }
+            })
+    }
+
+
+    //[{"montante":200.5,"vezes":2},{"montante":100.2,"vezes":5},{"montante":50.5,"vezes":1},{"montante":70.5,"vezes":2}]
 
 
     private ehDiaUtil(data: Date) {
