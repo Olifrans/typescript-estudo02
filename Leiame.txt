@@ -36,16 +36,5 @@ chamar no metodo:
     public adiciona(): void {}
 
 
-
-
-
-
-
-
-update, Tempo de execução: 0.0005 segundos
-logar-tempo-de-execucao.js:14 update, Tempo de execução: 0.001199999988079071 segundos
-logar-tempo-de-execucao.js:14 update, Tempo de execução: 0.00009999996423721313 segundos
-logar-tempo-de-execucao.js:14 adiciona, Tempo de execução: 5.299999952316284 milissegundo
-
-
-Detalhando LogartempoDeExecucao em segundos e milissegundo
+--> Decorator que não importa o metodo,
+Vai retorna o nome, parametros e retorno do metodo
