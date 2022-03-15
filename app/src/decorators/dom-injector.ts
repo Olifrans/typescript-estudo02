@@ -10,10 +10,10 @@ export function domInjector(seletor: string) {
         const getter = function () {
             if (!elemento) {
                 elemento = <HTMLElement>document.querySelector(seletor);
-
                 console.log(`Buscando elemento do Dom com o seletor
                 ${seletor} para injenetar em ${propertyKey}`);
             }
+            
             return elemento;
         }
 
