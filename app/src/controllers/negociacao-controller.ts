@@ -3,10 +3,10 @@ import { inspect } from '../decorators/inspect.js';
 import { LogartempoDeExecucao } from '../decorators/logar-tempo-de-execucao.js';
 import { DiasDaSemana } from '../enums/dias-da-semana.js';
 import { Negociacao } from '../models/negociacao.js';
-import { Negociacoes } from '../models/negociacoes.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
-import { Negociacoes } from '../models/negociacoes';
+import { Negociacoes } from '../models/negociacoes.js';
+import { NegociacoesDoDia } from '../Interfaces/negociacao-do-dia.js';
 
 export class NegociacaoController {
 
@@ -51,10 +51,10 @@ export class NegociacaoController {
     }
 
 
-    importarDados(): void {
+    public importarDados(): void {
         fetch('http://localhost:8080/dados')
             .then(res => res.json())
-            .then((dados: any[]) => {
+            .then((dados: NegociacoesDoDia[]) => {
                 return dados.map(dadoDeHoje => {
                     return new Negociacao(
                         new Date(),
@@ -64,14 +64,13 @@ export class NegociacaoController {
                 })
             })
             .then(negociacoesDeHoje => {
-                for(let negociacao of negociacoesDeHoje) {
+                for (let negociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negociacao);
                 }
+                this.negociacoesView.update(this.negociacoes);
             })
     }
 
-
-    //[{"montante":200.5,"vezes":2},{"montante":100.2,"vezes":5},{"montante":50.5,"vezes":1},{"montante":70.5,"vezes":2}]
 
 
     private ehDiaUtil(data: Date) {
