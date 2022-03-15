@@ -17,7 +17,7 @@ export class NegociacoesView extends View<Negociacoes> {
             </thead>
             <tbody>
                 ${model.lista().map(negociacao => {
-                    return `
+            return `
                         <tr>
                             <td>${this.formatar(negociacao.data)}
                             </td>
@@ -29,7 +29,7 @@ export class NegociacoesView extends View<Negociacoes> {
                             </td>
                         </tr>
                     `;
-                }).join('')}
+        }).join('')}
             </tbody>
         </table>
         `;

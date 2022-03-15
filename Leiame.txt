@@ -38,3 +38,8 @@ chamar no metodo:
 
 --> Decorator que não importa o metodo,
 Vai retorna o nome, parametros e retorno do metodo
+
+Deixando o código mais SEX com o Decorator de Propriedades de Classes
+Obs: Neste Decorator não temos acesso a instacia da classe a atribuição é feita através 
+de artificios do JavaScript:
+Convertendo os Inputs para Get, ou seja, ao utilizarmos as atribuição via Get --> para ser uma propriedade generica ("propertyKey")
