@@ -6,9 +6,6 @@ import { Negociacao } from '../models/negociacao.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 import { Negociacoes } from '../models/negociacoes.js';
-
-// import { NegociacoesDoDia } from '../Interfaces/negociacao-do-dia.js';
-
 import { NegociacoesServices } from '../services/negociacoes-services.js';
 
 export class NegociacaoController {
@@ -55,6 +52,10 @@ export class NegociacaoController {
         }
 
         this.negociacoes.adiciona(negociacao);
+
+        console.log(negociacao.paraTexto());
+        console.log(this.negociacoes.paraTexto());
+
         this.limparFormulario();
         this.atualizaView();
     }
