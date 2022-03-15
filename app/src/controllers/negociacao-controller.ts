@@ -7,6 +7,7 @@ import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 import { Negociacoes } from '../models/negociacoes.js';
 import { NegociacoesServices } from '../services/negociacoes-services.js';
+import { imprimir } from '../utils/imprimir.js';
 
 export class NegociacaoController {
 
@@ -23,16 +24,10 @@ export class NegociacaoController {
     private negociacoesServices = new NegociacoesServices();
 
 
-
-
-
-
     //Atribuções feita pelo decorator domInjector para evitar o crecimento do constructor
     constructor() {
         this.negociacoesView.update(this.negociacoes);
     }
-
-
 
     //Analisando a performance e o tempo de renderização de uma aplicação com typescript
     //@inspect()
@@ -50,16 +45,11 @@ export class NegociacaoController {
                 .update("Atenção! Esta operação só podem ser realizadas, apenas em dias úteis");
             return;
         }
-
         this.negociacoes.adiciona(negociacao);
-
-        console.log(negociacao.paraTexto());
-        console.log(this.negociacoes.paraTexto());
-
+        imprimir(negociacao, this.negociacoes);
         this.limparFormulario();
         this.atualizaView();
     }
-
 
     public importarDados(): void {
         this.negociacoesServices.obterNegociacoesDoDia()
@@ -70,8 +60,6 @@ export class NegociacaoController {
                 this.negociacoesView.update(this.negociacoes);
             })
     }
-
-
 
     private ehDiaUtil(data: Date) {
         return data.getDay() > DiasDaSemana.DOMINGO
