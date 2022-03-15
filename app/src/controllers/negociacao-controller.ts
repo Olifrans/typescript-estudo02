@@ -10,7 +10,6 @@ import { NegociacoesServices } from '../services/negociacoes-services.js';
 import { imprimir } from '../utils/imprimir.js';
 
 export class NegociacaoController {
-
     @domInjector('#data')
     private inputData: HTMLInputElement;
     @domInjector('#quantidade')
@@ -24,12 +23,12 @@ export class NegociacaoController {
     private negociacoesServices = new NegociacoesServices();
 
 
-    //Atribuções feita pelo decorator domInjector para evitar o crecimento do constructor
+    //Add feita pelo decorator domInjector
     constructor() {
         this.negociacoesView.update(this.negociacoes);
     }
 
-    //Analisando a performance e o tempo de renderização de uma aplicação com typescript
+    //Performance e o tempo de renderização
     //@inspect()
     @inspect
     @LogartempoDeExecucao()
@@ -64,7 +63,6 @@ export class NegociacaoController {
                         )
                 });
             })
-
             .then(negociacoesDeHoje => {
                 for (let negociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negociacao);

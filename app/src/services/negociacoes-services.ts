@@ -1,8 +1,6 @@
 import { NegociacoesDoDia } from '../Interfaces/negociacao-do-dia.js';
 import { Negociacao } from '../models/negociacao.js';
 
-
-
 export class NegociacoesServices {
 
     public obterNegociacoesDoDia(): Promise<Negociacao[]> {
