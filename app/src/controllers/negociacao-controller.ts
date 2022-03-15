@@ -6,7 +6,10 @@ import { Negociacao } from '../models/negociacao.js';
 import { MensagemView } from '../views/mensagem-view.js';
 import { NegociacoesView } from '../views/negociacoes-view.js';
 import { Negociacoes } from '../models/negociacoes.js';
-import { NegociacoesDoDia } from '../Interfaces/negociacao-do-dia.js';
+
+// import { NegociacoesDoDia } from '../Interfaces/negociacao-do-dia.js';
+
+import { NegociacoesServices } from '../services/negociacoes-services.js';
 
 export class NegociacaoController {
 
@@ -20,6 +23,12 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView('#negociacoesView');
     private mensagemView = new MensagemView('#mensagemView');
+    private negociacoesServices = new NegociacoesServices();
+
+
+
+
+
 
     //Atribuções feita pelo decorator domInjector para evitar o crecimento do constructor
     constructor() {
@@ -52,17 +61,7 @@ export class NegociacaoController {
 
 
     public importarDados(): void {
-        fetch('http://localhost:8080/dados')
-            .then(res => res.json())
-            .then((dados: NegociacoesDoDia[]) => {
-                return dados.map(dadoDeHoje => {
-                    return new Negociacao(
-                        new Date(),
-                        dadoDeHoje.vezes,
-                        dadoDeHoje.montante
-                    )
-                })
-            })
+        this.negociacoesServices.obterNegociacoesDoDia()
             .then(negociacoesDeHoje => {
                 for (let negociacao of negociacoesDeHoje) {
                     this.negociacoes.adiciona(negociacao);
